@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Simple Flask server to handle NVIDIA API calls securely
 """
@@ -190,6 +191,6 @@ def health():
 
 if __name__ == '__main__':
     print("Starting NVIDIA Chatbot Server...")
-    print("Frontend: http://localhost:8000")
-    print("Backend API: http://localhost:5000")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.getenv('PORT', 5000))  # Use PORT from environment or default to 5000
+    print(f"Backend API: http://0.0.0.0:{port}")
+    app.run(host='0.0.0.0', port=port, debug=False)  # Disable debug in production
