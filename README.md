@@ -27,7 +27,7 @@ More models can be added easily!
 ---
 
 ## 🖼️ Screenshot
-![Chatbot Screenshot](Readme_scr.png)
+![Chatbot Screenshot](code-icons/Readme_scr.png)
 
 ---
 
