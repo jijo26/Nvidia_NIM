@@ -1,102 +1,122 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-    <style>
-        p{
-    font-size: smaller;
-    visibility: calc();
-}
-.ms{
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 1px;
-}
-.fb{
-    display: inline-block;
-    vertical-align: middle;
-}
-.x{
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 2px;
-}
-.yt{
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 2px;
-}
-.co{
-    display: inline-block;
-    vertical-align: middle;
-}
-.openai{
-    display: inline-block;
-    vertical-align: middle;
-}
-.login{
-    display: inline-block;
-    vertical-align: middle;
-    padding-bottom: 2px;
-}
-    </style>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microsoft-Copilot</title>
-    <link rel="icon" href="microsoft.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NVIDIA Chatbot</title>
+  <!-- Production-ready stylesheets - No CDN dependencies for core functionality -->
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Tailwind replacement - Contains only the classes actually used -->
+  <link rel="stylesheet" href="tailwind-custom.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body bgcolor="white" style="font-family: Arial, Helvetica, sans-serif;" style="color: white;">
-    <center>
-        <h2>MICROSOFT <a href="https://www.microsoft.com/en-in/#page-top"><div class="ms"><img src="ms2.png"></a></h2></div>
-        <h3>Redirect to original site ?</h3>
-        <a href="https://www.microsoft.com/en-in/#page-top">Click here</a> <br>
-        <br>
-        <p1>Welcome to Microsoft</p1><br>
-        <p2>Developing Future Through Technology</p2>
-        <h3>Login to your account <a href="copilot login.html"><div class="login"><img src="ad.png"></a></h3></div>
-        <h3>This Website is only for study purpose !</h3>
-        <h3>Files are taken from © Microsoft 2024</h3>
-    </center>
-    <hr>
-    <br>
-    <center>
-        <h2 style="padding-left: 30px;">Introducing Copilot <a href="https://copilot.microsoft.com/"><div class="co"><img src="icons8-microsoft-copilot-48.png"></a></h2></div>
-        <h2 style="padding-left: 15px;">Your AI companion</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/l4B1UflAty8?si=Z40MP2h9COdRfPmp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </center><br>
-    <p1>Meet your everyday AI companion.Copilot in Windows 11,Windows 10,Android and ios complements your capabilities and creativity with intelligent assistance and relevant answers.</p1>
-    <center>
-        <br>
-    <a href="https://copilot.microsoft.com/">Click here to use copilot</a>
-    </center>
-    <h2>Uses of Copilot</h2>
-    <ul>
-        <li>Search for Specific Information: You can ask it questions and seek relevant answers</li>
-        <li>Generate Text: Copilot can create text, including emails and summaries</li>
-        <li>Create Images: It has the capability to generate images based on text prompts</li>
-        <li>Solve Complex Tasks: Copilot can tackle tasks like solving math problems</li>
-    </ul>
-    <center>
-        <h3>It Uses Open AI's ChatGpt Model To Work</h3>
-        <h2>OPEN AI <a href="https://openai.com/"><div class="openai"><img src="icons8-chatgpt-30.png"></a></h2></div>
-    </center>
-    <h2>Downloads</h2>
-    <ul>
-        <li><h3>Android (No virus Files Taken from © Microsoft 2024) 🔐</h3><div class="android"><a href="https://play.google.com/store/apps/details?id=com.microsoft.copilot&referrer=adjust_reftag%3DcN4AnXvshsY4F%26utm_source%3DCodex%26utm_campaign%3DCodex_Copilot_SuperBowl_Rivercard%26utm_content%3Dexp-68-323%26utm_term%3Ddesktop-android&pli=1"><img src="icons8-android-logo-48.png"></a></li></div>
-        <li><h3>ios (No virus Files Taken from © Microsoft 2024) 🔐</h3><a href="https://apps.apple.com/us/app/microsoft-copilot/id6472538445img"><div class="ios"><img src="icons8-apple-logo-26.png"></a></div></li>
-        <li><h3>Search in<a href="ms-settings:windowsupdate?activationSource=SMC-IA-4027667"> Windows Update </a>for Copilot in Windows</h3></li>
-    </ul>
-    <hr>
-    <br>
-    <h4>Follow Microsoft 
-        <a href="https://www.facebook.com/MicrosoftIndia"><div class="fb"><img src="fb.png"></a></div> 
-        <a href="https://twitter.com/microsoftindia"><div class="x"><img src="x.png"></a></div>
-        <a href="https://www.youtube.com/user/IndiaMicrosoftVideos"><div class="yt"><img src="yt.png"></a></div>
-    </h4>
-    <center>
-        <h3>Contact us</h3>
-        <a href="mailto:antonjijo2018@outlook.com"><img src="icons8-email-64.png"></a>
-        <br>
-        <p style="display: -webkit-inline-box;">© Microsoft 2024</p>
-    </center>
+<body class="bg-neutral-950 text-gray-100 font-inter">
+    <div class="chat-container">
+    <!-- Qoder-style Glassmorphism Navbar -->
+    <nav class="qoder-navbar">
+      <div class="navbar-content">
+        <!-- Logo -->
+        <div class="navbar-logo-container">
+          <a href="#" class="navbar-logo" aria-label="Home">
+            <img width="30" height="30" src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/external-nvidia-is-technology-company-designs-graphics-processing-units-for-the-gaming-and-professional-markets-logo-color-tal-revivo.png" alt="NVIDIA Logo" class="logo-icon" />
+            <span class="logo-text-svg">
+              <img src="Logo-Text.svg" alt="NVIDIA" />
+            </span>
+          </a>
+        </div>
+        
+        <!-- Right Section -->
+        <div class="navbar-right">
+          <!-- Custom Glassmorphism Model Selection -->
+          <div class="navbar-item">
+            <div class="custom-select-container">
+              <div class="custom-select-trigger" id="customSelectTrigger">
+                <span class="selected-option" id="selectedOption">Llama 4 Maverick 17B</span>
+                <svg class="select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="custom-select-dropdown" id="customSelectDropdown">
+                <div class="select-option" data-value="meta/llama-4-maverick-17b-128e-instruct">Llama 4 Maverick 17B</div>
+                <div class="select-option" data-value="deepseek-ai/deepseek-r1">DeepSeek R1</div>
+                <div class="select-option" data-value="qwen/qwen2.5-coder-32b-instruct">Qwen2.5 Coder 32B</div>
+                <div class="select-option" data-value="qwen/qwen3-coder-480b-a35b-instruct">Qwen3 Coder 480B</div>
+                <div class="select-option" data-value="deepseek-ai/deepseek-v3.1">DeepSeek V3.1</div>
+                <div class="select-option" data-value="openai/gpt-oss-120b">GPT-OSS 120B</div>
+                <div class="select-option" data-value="qwen/qwen3-235b-a22b:free">Qwen3 235B A22B</div>
+                <div class="select-option" data-value="google/gemma-3-27b-it:free">Gemma 3 27B IT</div>
+              </div>
+            </div>
+            <!-- Hidden select for form compatibility -->
+            <select id="modelSelect" class="hidden-select">
+              <option value="meta/llama-4-maverick-17b-128e-instruct">Llama 4 Maverick 17B</option>
+              <option value="deepseek-ai/deepseek-r1">DeepSeek R1</option>
+              <option value="qwen/qwen2.5-coder-32b-instruct">Qwen2.5 Coder 32B</option>
+              <option value="qwen/qwen3-coder-480b-a35b-instruct">Qwen3 Coder 480B</option>
+              <option value="deepseek-ai/deepseek-v3.1">DeepSeek V3.1</option>
+              <option value="openai/gpt-oss-120b">GPT-OSS 120B</option>
+              <option value="qwen/qwen3-235b-a22b:free">Qwen3 235B A22B</option>
+              <option value="google/gemma-3-27b-it:free">Gemma 3 27B IT</option>
+            </select>
+          </div>
+          
+          <!-- Status Indicator -->
+          <div class="navbar-item status-container">
+            <span class="status-indicator" id="statusPing" title="Connection Status">
+              <span id="statusPingOuter" class="status-ping-outer"></span>
+              <span id="statusPingInner" class="status-ping-inner"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+        
+    <!-- Messages -->
+    <div class="chat-messages p-4 space-y-4 overflow-y-auto h-[70vh]" id="chatMessages">
+      <div class="message bot-message flex gap-3">
+        <div class="message-avatar">
+          <img src="Main_Logo.svg" alt="NVIDIA" class="nvidia-logo h-8" />
+        </div>
+                <div class="message-content">
+                    <p>Hello! I'm your NVIDIA-powered chatbot with advanced capabilities:</p>
+                    <p><strong>Multiple AI Models available:</strong></p>
+                    <p><strong>Meta:</strong> Llama 4 Maverick 17B</p>
+                    <p><strong>DeepSeek:</strong> R1</p>
+                    <p><strong>Qwen:</strong> Qwen2.5 Coder 32B</p>
+                    <p><strong>Qwen:</strong> Qwen3 Coder 480B</p>
+                    <p><strong>DeepSeek:</strong> V3.1</p>
+                    <p><strong>OpenAI:</strong> GPT-OSS 120B</p>
+                    <p><strong>Qwen:</strong> Qwen3 235B A22B</p>
+                    <p><strong>Google:</strong> Gemma 3 27B IT</p>
+                    <p><strong>Select</strong> your preferred model above and start chatting!</p>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="input-wrapper">
+                <textarea 
+                    id="messageInput" 
+                    placeholder="Enter your message..."
+                    class="input"
+                    maxlength="5000"
+                    rows="1"
+                ></textarea>
+                <button id="sendButton" class="send-btn" data-mode="send">
+                    <i class="fas fa-paper-plane" id="sendIcon"></i>
+                </button>
+            </div>
+            <div class="input-footer">
+                <span class="char-count" id="charCount">0/5000</span>
+                <span class="model-info" id="modelInfo">Powered by Nvidia NIM</span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
