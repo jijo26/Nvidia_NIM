@@ -17,7 +17,8 @@ CORS(app, origins=[
     "https://antonjijo.github.io",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "https://Nvidia.pythonanywhere.com"  # Add PythonAnywhere domain for cross-origin requests
 ])
 
 # API configuration - Get from environment variables

@@ -156,41 +156,77 @@ class Chatbot {
     async callNvidiaAPI(message) {
         const selectedModel = this.modelSelect.value;
 
-        // Use Render deployed server URL in production, localhost in development
-        const serverURL = window.location.hostname === 'antonjijo.github.io' 
-            ? 'https://nvidia-nim-bot.onrender.com'  // Your actual Render app URL
-            : 'http://localhost:5000';
+        // Define server URLs with primary and failover
+        const servers = window.location.hostname === 'antonjijo.github.io' 
+            ? [
+                'https://nvidia-nim-bot.onrender.com',  // Primary server (Render)
+                'https://Nvidia.pythonanywhere.com'     // Failover server (PythonAnywhere)
+              ]
+            : ['http://localhost:5000'];  // Development uses localhost only
 
-        const response = await fetch(`${serverURL}/api/chat`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                message,
-                model: selectedModel,
-                max_tokens: 1024,
-                temperature: 0.7,
-                top_p: 0.9,
-                frequency_penalty: 0.0,
-                presence_penalty: 0.0
-            })
-        });
+        let lastError = null;
+        
+        // Try each server in sequence until one works
+        for (let i = 0; i < servers.length; i++) {
+            const serverURL = servers[i];
+            
+            try {
+                console.log(`Attempting to connect to server ${i + 1}/${servers.length}: ${serverURL}`);
+                
+                const response = await fetch(`${serverURL}/api/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message,
+                        model: selectedModel,
+                        max_tokens: 1024,
+                        temperature: 0.7,
+                        top_p: 0.9,
+                        frequency_penalty: 0.0,
+                        presence_penalty: 0.0
+                    }),
+                    timeout: 10000  // 10 second timeout
+                });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                if (!data.response && !data.message) {
+                    if (data.error) throw new Error(data.error);
+                    throw new Error('Invalid response from server');
+                }
+
+                const botResponse = data.response || data.message;
+                if (botResponse.includes("Hello! I'm your NVIDIA-powered chatbot with advanced capabilities")) {
+                    throw new Error('NVIDIA API returned unexpected response. Please check API configuration.');
+                }
+
+                // Success! Update status and return response
+                const serverName = serverURL.includes('render.com') ? 'Primary' : 
+                                 serverURL.includes('pythonanywhere.com') ? 'Failover' : 'Local';
+                this.updateStatus(`Connected (${serverName})`, '#4ade80');
+                console.log(`Successfully connected to ${serverName} server: ${serverURL}`);
+                
+                return botResponse;
+                
+            } catch (error) {
+                console.warn(`Server ${i + 1} failed (${serverURL}):`, error.message);
+                lastError = error;
+                
+                // If this isn't the last server, continue to next one
+                if (i < servers.length - 1) {
+                    console.log(`Trying next server...`);
+                    continue;
+                }
+            }
         }
-
-        const data = await response.json();
-        if (!data.response && !data.message) {
-            if (data.error) throw new Error(data.error);
-            throw new Error('Invalid response from server');
-        }
-
-        const botResponse = data.response || data.message;
-        if (botResponse.includes("Hello! I'm your NVIDIA-powered chatbot with advanced capabilities")) {
-            throw new Error('NVIDIA API returned unexpected response. Please check API configuration.');
-        }
-
-        return botResponse;
+        
+        // All servers failed
+        this.updateStatus('Connection Failed', '#ef4444');
+        console.error('All servers failed. Last error:', lastError);
+        throw lastError || new Error('All servers are unavailable');
     }
 
     updateModelInfo() {
@@ -1921,19 +1957,51 @@ class Chatbot {
 
     async checkServerStatus() {
         try {
-            // Use Render deployed server URL in production, localhost in development
-            const serverURL = window.location.hostname === 'antonjijo.github.io' 
-                ? 'https://nvidia-nim-bot.onrender.com'  // Your actual Render app URL
-                : 'http://localhost:5000';
+            // Define server URLs with primary and failover
+            const servers = window.location.hostname === 'antonjijo.github.io' 
+                ? [
+                    'https://nvidia-nim-bot.onrender.com',  // Primary server (Render)
+                    'https://Nvidia.pythonanywhere.com'     // Failover server (PythonAnywhere)
+                  ]
+                : ['http://localhost:5000'];  // Development uses localhost only
+
+            let connected = false;
+            let connectedServer = '';
             
-            const response = await fetch(`${serverURL}/health`);
-            if (response.ok) {
-                this.updateStatus('Ready', '#4ade80');
-            } else {
-                this.updateStatus('Server Error', '#ef4444');
+            // Try each server in sequence until one works
+            for (let i = 0; i < servers.length; i++) {
+                const serverURL = servers[i];
+                
+                try {
+                    console.log(`Checking server ${i + 1}/${servers.length}: ${serverURL}`);
+                    
+                    const response = await fetch(`${serverURL}/health`, {
+                        timeout: 5000  // 5 second timeout for health check
+                    });
+                    
+                    if (response.ok) {
+                        connected = true;
+                        const serverName = serverURL.includes('render.com') ? 'Primary' : 
+                                         serverURL.includes('pythonanywhere.com') ? 'Failover' : 'Local';
+                        connectedServer = serverName;
+                        console.log(`Server ${serverName} is online: ${serverURL}`);
+                        break; // Found working server, stop checking
+                    }
+                } catch (error) {
+                    console.warn(`Server ${i + 1} health check failed (${serverURL}):`, error.message);
+                    // Continue to next server
+                }
             }
-        } catch {
-            this.updateStatus('Server Offline', '#ef4444');
+            
+            if (connected) {
+                this.updateStatus(`Ready (${connectedServer})`, '#4ade80');
+            } else {
+                this.updateStatus('All Servers Offline', '#ef4444');
+            }
+            
+        } catch (error) {
+            console.error('Health check error:', error);
+            this.updateStatus('Connection Error', '#ef4444');
         }
     }
     
