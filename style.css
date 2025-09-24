@@ -27,6 +27,9 @@ body {
     overflow: hidden;
 }
 
+navbar{
+    background: transparent;
+}
 .chat-container {
     width: 100vw;
     height: 100vh;
